@@ -3,6 +3,8 @@ package com.example.domain.details.model
 data class AnimeDetails(
     val id:Int,
     val title:String,
+    val englishTitle:String,
+    val nativeTitle:String,
     val banner:String,
     val episodes:Int?,
     val genre:List<String>?,

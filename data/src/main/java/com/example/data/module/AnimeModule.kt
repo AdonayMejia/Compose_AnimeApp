@@ -1,8 +1,8 @@
 package com.example.data.module
 
 import com.apollographql.apollo3.ApolloClient
-import com.example.data.apolloanimeclient.ApolloAnimeClient
-import com.example.domain.animeclient.AnimeClient
+import com.example.data.apolloanimeclient.AnimeRepositoryImpl
+import com.example.domain.animerepository.AnimeRepository
 import com.example.domain.usecases.GetAnimeUseCase
 import com.example.domain.usecases.GetCharactersUseCase
 import dagger.Module
@@ -24,19 +24,19 @@ object AnimeModule {
 
     @Provides
     @Singleton
-     fun providesAnimeClient(apolloClient: ApolloClient) : AnimeClient {
-         return ApolloAnimeClient(apolloClient)
+     fun providesAnimeClient(apolloClient: ApolloClient) : AnimeRepository {
+         return AnimeRepositoryImpl(apolloClient)
      }
 
     @Provides
     @Singleton
-    fun providesGetAnimeUseCase(animeClient: AnimeClient) : GetAnimeUseCase {
-        return GetAnimeUseCase(animeClient)
+    fun providesGetAnimeUseCase(animeRepository: AnimeRepository) : GetAnimeUseCase {
+        return GetAnimeUseCase(animeRepository)
     }
 
     @Provides
     @Singleton
-    fun providesGetCharacterUseCase(animeClient: AnimeClient) : GetCharactersUseCase {
-        return GetCharactersUseCase(animeClient)
+    fun providesGetCharacterUseCase(animeRepository: AnimeRepository) : GetCharactersUseCase {
+        return GetCharactersUseCase(animeRepository)
     }
 }

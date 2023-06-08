@@ -1,13 +1,13 @@
 package com.example.domain.usecases
 
-import com.example.domain.animeclient.AnimeClient
+import com.example.domain.animerepository.AnimeRepository
 import com.example.domain.search.model.AnimeModel
 
 class GetAnimeUseCase(
-    private val animeClient: AnimeClient
+    private val animeRepository: AnimeRepository
 ) {
     suspend fun getExecute():List<AnimeModel>{
-        return animeClient
+        return animeRepository
             .getAnimeList()
     }
 }

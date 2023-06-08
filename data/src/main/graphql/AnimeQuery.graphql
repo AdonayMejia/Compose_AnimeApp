@@ -1,4 +1,4 @@
-query ListAnime($page: Int,$perPage:Int,$mediaId: Int,$type: MediaType,$sort: [MediaSort]) {
+query ListAnime($page: Int,$perPage:Int,$type: MediaType,$sort: [MediaSort],$search: String) {
     Page(page: $page,perPage: $perPage) {
         pageInfo {
             total
@@ -6,7 +6,7 @@ query ListAnime($page: Int,$perPage:Int,$mediaId: Int,$type: MediaType,$sort: [M
             perPage
             currentPage
         }
-        media(id: $mediaId, type: $type, sort: $sort) {
+        media(type: $type, sort: $sort, search: $search) {
             id
             title {
                 romaji
@@ -14,33 +14,6 @@ query ListAnime($page: Int,$perPage:Int,$mediaId: Int,$type: MediaType,$sort: [M
             coverImage {
                 extraLarge
             }
-            episodes
-            genres
-            seasonYear
-            type
         }
     }
 }
-
-#query ListAnime($page: Int,$perPage:Int) {
-#    Page(page: $page,perPage: $perPage) {
-#        pageInfo {
-#            total
-#            hasNextPage
-#            perPage
-#            currentPage
-#        }
-#        media {
-#            id
-#            title {
-#                romaji
-#            }
-#            coverImage {
-#                extraLarge
-#            }
-#            episodes
-#            genres
-#            seasonYear
-#        }
-#    }
-#}
