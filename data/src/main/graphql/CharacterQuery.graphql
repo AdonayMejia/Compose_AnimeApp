@@ -1,0 +1,26 @@
+query AnimeCharacters($mediaId: Int) {
+    Media(id: $mediaId) {
+        id
+        title {
+            romaji
+        }
+        coverImage {
+            extraLarge
+        }
+        description(asHtml: false)
+        episodes
+        genres
+        characters {
+            nodes {
+                image {
+                    medium
+                }
+                name {
+                    first
+                }
+                id
+                description(asHtml: false)
+            }
+        }
+    }
+}
