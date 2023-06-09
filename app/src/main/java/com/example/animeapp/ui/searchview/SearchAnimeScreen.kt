@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.paging.compose.items
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,28 +33,47 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import com.example.animeapp.ui.searchview.component.AnimeItem
 import com.example.animeapp.ui.searchview.component.SearchBar
 import com.example.animeapp.ui.searchview.uistate.SearchUiState
 import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
+import com.example.data.apolloextensions.toOptional
 import com.example.domain.search.model.AnimeModel
 import kotlinx.coroutines.runBlocking
 
 @Composable
 fun SearchAnimeScreen(
-    state:SearchUiState,
-    onSelectAnime:(Int) -> Unit,
+    viewModel: SearchViewModel
+//    onSelectAnime:(Int) -> Unit,
 //    onDismissAnime:() -> Unit
+) {
+    val uiState by viewModel.uiState.collectAsState()
+    val anime = viewModel.animeFlow.collectAsLazyPagingItems()
+    SearchScreenContent(
+        isLoading = uiState.isLoading,
+        animeList = anime,
+        onSelectedAnime = uiState.onSelectAnime
+    )
+}
+
+@Composable
+fun SearchScreenContent(
+    isLoading:Boolean,
+    animeList:LazyPagingItems<AnimeModel>,
+    onSelectedAnime:(Int) -> Unit
 ) {
     Column(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(top = 80.dp, start = 16.dp, end = 16.dp)
             .fillMaxSize()
     ) {
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
-        if (state.isLoading){
+        if (isLoading){
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
@@ -64,24 +85,22 @@ fun SearchAnimeScreen(
                 modifier = Modifier
                     .fillMaxSize(),
             ){
-                items(state.anime){anime ->
-                    AnimeItem(
-                        anime = anime,
-                        modifier = Modifier.fillMaxSize()
-                    )
+                items(animeList.itemCount){anime ->
+                    val animes = animeList[anime]
+//                    AnimeItem(
+//                        anime = animes,
+//                        modifier = Modifier.fillMaxSize(),
+//                        onSelectedAnime = {onSelectedAnime(anime.id)}
+//                    )
                 }
             }
         }
     }
 }
 
-@Composable
-fun SearchScreenContent() {
-
-}
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SearchScreenPrev() {
-    SearchAnimeScreen(state = SearchUiState(), onSelectAnime = { Int -> })
+    val viewModel: SearchViewModel = hiltViewModel()
+    SearchAnimeScreen(viewModel = viewModel)
 }

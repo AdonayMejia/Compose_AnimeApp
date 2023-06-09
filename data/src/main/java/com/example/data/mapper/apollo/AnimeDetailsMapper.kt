@@ -23,6 +23,7 @@ fun GetAnimeDetailsQuery.Media.toAnimeDetails(): AnimeDetails{
                     description = it.description
                 )
             }
-        }
+        },
+        score = meanScore
     )
 }

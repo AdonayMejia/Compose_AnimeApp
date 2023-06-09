@@ -2,6 +2,7 @@ package com.example.animeapp.ui.searchview.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -37,13 +38,15 @@ import com.example.domain.search.model.AnimeModel
 @Composable
 fun AnimeItem(
     anime: AnimeModel,
-    modifier: Modifier
+    modifier: Modifier,
+    onSelectedAnime:(Int) -> Unit
 ) {
     val painter = rememberAsyncImagePainter(model = anime.image)
     Card (
         modifier = modifier
             .fillMaxSize()
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable { onSelectedAnime(anime.id) },
         shape = RectangleShape,
         colors = CardDefaults.cardColors(containerColor = Color.LightGray)
     ){
@@ -81,5 +84,5 @@ fun ItemPreview() {
         name = "Naruto Shippuden",
         image = R.drawable.naruto.toString()
     )
-    AnimeItem(anime = anime, modifier = Modifier)
+    AnimeItem(anime = anime, modifier = Modifier, onSelectedAnime = {})
 }

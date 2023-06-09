@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.animeapp.model.navigation.MainScreen
 import com.example.animeapp.ui.searchview.SearchAnimeScreen
 import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
 import com.example.animeapp.ui.theme.AnimeAppTheme
@@ -26,13 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AnimeAppTheme {
-                val viewModel = hiltViewModel<SearchViewModel>()
-                val state by viewModel.uiState.collectAsState()
-                SearchAnimeScreen(
-                    state = state,
-                    onSelectAnime = viewModel::selectedAnime,
-//                    onDismissAnime = {}
-                )
+                MainScreen()
             }
         }
     }

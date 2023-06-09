@@ -9,7 +9,8 @@ data class AnimeDetails(
     val episodes:Int?,
     val genre:List<String>?,
     val description:String?,
-    val character: List<Character>?
+    val character: List<Character>?,
+    val score:Int?
 )
 
 data class Character(

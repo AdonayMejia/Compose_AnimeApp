@@ -4,7 +4,8 @@ import com.example.domain.details.model.AnimeDetails
 import com.example.domain.search.model.AnimeModel
 
 data class SearchUiState(
-    val isLoading:Boolean = false,
-    val selectedAnime:AnimeDetails? = null,
-    val anime:List<AnimeModel> = emptyList()
+    val isLoading:Boolean,
+    val selectedAnime:AnimeDetails?,
+    val anime:List<AnimeModel>,
+    val onSelectAnime:(Int) -> Unit
 )
