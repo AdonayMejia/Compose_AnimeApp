@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 SearchAnimeScreen(
                     state = state,
                     onSelectAnime = viewModel::selectedAnime,
-                    onDismissAnime = {}
+//                    onDismissAnime = {}
                 )
             }
         }
