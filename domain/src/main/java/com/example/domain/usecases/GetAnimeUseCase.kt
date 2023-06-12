@@ -4,8 +4,9 @@ import com.example.domain.animerepository.AnimeRepository
 import com.example.domain.search.model.AnimeModel
 import com.example.domain.search.model.AnimeSort
 import com.example.domain.search.model.AnimeType
+import javax.inject.Inject
 
-class GetAnimeUseCase(
+class GetAnimeUseCase @Inject constructor(
     private val animeRepository: AnimeRepository
 ) {
     suspend fun getExecute(

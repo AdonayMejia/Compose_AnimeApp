@@ -75,6 +75,7 @@ dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger-hilt" }
 hilt-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-compiler" }
 hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 
 [bundles]
 room = [

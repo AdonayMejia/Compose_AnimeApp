@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AnimeApp</string>
     <string name="navigation_description">Icon Navigation</string>
+    <string name="select_a_sort">Sort Anime</string>
+    <string name="select_a_type">Anime Type</string>
+    <string name="filters">Filters</string>
 </resources>

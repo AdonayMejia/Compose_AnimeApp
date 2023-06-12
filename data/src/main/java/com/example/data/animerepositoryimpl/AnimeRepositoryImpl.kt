@@ -18,8 +18,9 @@ import com.example.domain.details.model.Character
 import com.example.domain.search.model.AnimeModel
 import com.example.domain.search.model.AnimeSort
 import com.example.domain.search.model.AnimeType
+import javax.inject.Inject
 
-class AnimeRepositoryImpl(
+class AnimeRepositoryImpl @Inject constructor(
     private val apolloClient: ApolloClient
 ) : AnimeRepository {
 

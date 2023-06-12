@@ -26,7 +26,7 @@ sealed class BottomBarScreens(
     )
 
     object DetailsScreen : BottomBarScreens(
-        route = "DetailsScreen",
+        route = "DetailsScreen/{id}",
         title = "Detail Anime",
         icon = Icons.Default.List
     )

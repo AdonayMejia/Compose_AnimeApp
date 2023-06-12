@@ -13,9 +13,6 @@ import com.example.animeapp.model.navigation.components.BottomBar
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
-        topBar = {
-            AppBar()
-        },
         bottomBar = {
             BottomBar(navController = navController)
         }

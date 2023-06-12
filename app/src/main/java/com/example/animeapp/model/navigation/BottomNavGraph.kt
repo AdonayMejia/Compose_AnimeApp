@@ -9,6 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.animeapp.ui.detailview.DetailScreen
 import com.example.animeapp.ui.favoriteview.FavoriteScreen
 import com.example.animeapp.ui.searchview.SearchAnimeScreen
 import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
@@ -26,19 +27,21 @@ fun BottomNavGraph(
     ) {
         composable(route = BottomBarScreens.SearchScreen.route) {
             SearchAnimeScreen(
-                viewModel = searchViewModel
-            )
+                viewModel = searchViewModel,
+                navController = navController,
+                )
         }
         composable(route = BottomBarScreens.FavoriteScreen.route) {
             FavoriteScreen(
             )
         }
-//        composable(
-//            route = BottomBarScreen.DetailScreen.route,
-//            arguments = listOf(navArgument("url") { type = NavType.StringType })
-//        ) { backStackEntry ->
-//            val url = backStackEntry.arguments?.getString("url") ?: ""
-//            DetailScreen(webUrl = url)
-//        }
+        composable(
+            route = BottomBarScreens.DetailsScreen.route,
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getInt("id")?.let { id ->
+                DetailScreen(id = id, navController = navController)
+            }
+        }
     }
 }

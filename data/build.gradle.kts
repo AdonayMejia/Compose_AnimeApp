@@ -3,9 +3,9 @@ plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     id("com.apollographql.apollo3") version "3.8.2"
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
-
+    id("com.google.devtools.ksp")
+    kotlin("kapt")
 }
 
 apollo {
@@ -50,7 +50,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.bundles.apollo)
     implementation(libs.dagger.hilt)
+    implementation(libs.bundles.room)
     kapt(libs.hilt.compiler)
+    ksp(libs.roomCompiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
