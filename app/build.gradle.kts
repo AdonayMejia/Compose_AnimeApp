@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.dagger.hilt)
     implementation(libs.hilt.navigation)
     implementation(libs.bundles.paging)
+    implementation(libs.jsoup)
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.hilt.compiler)
     testImplementation(libs.junit)

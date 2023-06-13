@@ -32,7 +32,7 @@ sealed class BottomBarScreens(
     )
 
     object CharacterScreen : BottomBarScreens(
-        route = "CharacterScreen",
+        route = "CharacterScreen/{characterId}",
         title = "Character Anime",
         icon = Icons.Default.Person
     )

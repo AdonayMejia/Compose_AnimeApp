@@ -15,7 +15,7 @@ data class AnimeDetails(
 
 data class Character(
     val id: Int,
-    val name:String?,
+    val name:String,
     val image:String,
     val description: String?
 )

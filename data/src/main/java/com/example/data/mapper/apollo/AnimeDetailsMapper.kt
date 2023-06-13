@@ -18,7 +18,7 @@ fun GetAnimeDetailsQuery.Media.toAnimeDetails(): AnimeDetails{
             character?.let {
                 Character(
                     id = it.id,
-                    name = it.name?.first,
+                    name = it.name?.first.orEmpty(),
                     image = it.image?.medium.orEmpty(),
                     description = it.description
                 )
