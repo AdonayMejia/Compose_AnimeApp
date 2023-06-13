@@ -31,6 +31,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.animeapp.R
+import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.ui.searchview.component.AnimeItem
 import com.example.animeapp.ui.searchview.component.FilterDropDown
@@ -52,7 +53,9 @@ fun SearchAnimeScreen(
 
     Scaffold(
         topBar = {
-            AppBar()
+            AppBar {
+                navController.navigate(BottomBarScreens.FavoriteScreen.route)
+            }
         }
     ) { innerPadding ->
         Column(

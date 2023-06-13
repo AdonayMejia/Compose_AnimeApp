@@ -57,7 +57,9 @@ fun AnimeItem(
         modifier = modifier
             .fillMaxSize()
             .padding(5.dp)
-            .clickable { },
+            .clickable {
+                       navController.navigate("DetailsScreen/${anime.id}")
+            },
         shape = RectangleShape,
         colors = CardDefaults.cardColors(containerColor = Color.LightGray)
     ){
@@ -80,7 +82,6 @@ fun AnimeItem(
                 )
             }
             Text(
-//            modifier = modifier.fillMaxSize(),
                 text = anime.name,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
