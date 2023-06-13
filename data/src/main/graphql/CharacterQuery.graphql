@@ -1,0 +1,12 @@
+query CharactersQuery($characterId: Int){
+    Character(id: $characterId) {
+        id
+        image {
+            large
+        }
+        name {
+            full
+        }
+        description
+    }
+}

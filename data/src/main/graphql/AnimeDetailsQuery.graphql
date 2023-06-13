@@ -1,0 +1,27 @@
+query GetAnimeDetails($mediaId: Int) {
+    Media(id: $mediaId) {
+        id
+        bannerImage
+        title {
+            english
+            native
+            romaji
+        }
+        episodes
+        meanScore
+        genres
+        description(asHtml: false)
+        characters {
+            nodes {
+                id
+                image {
+                    medium
+                }
+                name {
+                    first
+                }
+                description
+            }
+        }
+    }
+}

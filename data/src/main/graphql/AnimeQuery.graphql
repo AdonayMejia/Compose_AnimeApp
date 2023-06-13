@@ -1,0 +1,19 @@
+query ListAnime($page: Int,$perPage:Int,$type: MediaType,$sort: [MediaSort],$search: String) {
+    Page(page: $page,perPage: $perPage) {
+        pageInfo {
+            total
+            hasNextPage
+            perPage
+            currentPage
+        }
+        media(type: $type, sort: $sort, search: $search) {
+            id
+            title {
+                romaji
+            }
+            coverImage {
+                extraLarge
+            }
+        }
+    }
+}
