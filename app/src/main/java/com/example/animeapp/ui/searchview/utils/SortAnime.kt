@@ -3,9 +3,9 @@ package com.example.animeapp.ui.searchview.utils
 import com.example.domain.search.model.AnimeSort
 
 object SortAnime {
-    private const val POPULARITY = "Popularity"
-    private const val STATUS = "Status"
-    private const val SCORE = "Score"
+    private const val POPULARITY = "POPULARITY"
+    private const val STATUS = "STATUS"
+    private const val SCORE = "SCORE"
 
     val sortDisplayName = mapOf(
         AnimeSort.POPULARITY to POPULARITY,

@@ -38,6 +38,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.animeapp.R
 import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
+import com.example.animeapp.ui.detailview.utils.ChangeDescriptionFormat
 import com.example.animeapp.ui.detailview.viewmodel.DetailViewModel
 import com.example.animeapp.ui.searchview.component.CharacterItem
 import com.example.domain.details.model.AnimeDetails
@@ -95,7 +96,7 @@ fun DetailScreenContent(
             if (LocalInspectionMode.current) {
                 Image(
                     painter = painterResource(R.drawable.banner),
-                    contentDescription = "",
+                    contentDescription = "Detail Image",
                     modifier = Modifier
                         .height(250.dp)
                         .fillMaxWidth(),
@@ -104,7 +105,7 @@ fun DetailScreenContent(
             } else {
                 Image(
                     painter = rememberAsyncImagePainter(animeDetails.banner),
-                    contentDescription = "",
+                    contentDescription = "Detail Image",
                     modifier = Modifier
                         .height(250.dp)
                         .fillMaxWidth(),
@@ -123,10 +124,32 @@ fun DetailScreenContent(
                 style = MaterialTheme.typography.headlineLarge,
                 overflow = TextOverflow.Ellipsis
             )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Genres - ",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.padding(end = 5.dp)
+                )
+                animeDetails.genre?.take(3)?.forEach { genre ->
+                    Text(
+                        text = "$genre,",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            ShowDescriptionFormat(animeDetails.description)
+            ChangeDescriptionFormat(animeDetails.description)
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -137,42 +160,24 @@ fun DetailScreenContent(
                 Text(
                     text ="Episodes - ${animeDetails.episodes ?: 1}",
                     style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(end = 8.dp)
                 )
 
                 Text(
                     text = "Score - ${animeDetails.score ?: 1}",
                     style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = "Genres",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(end = 8.dp)
-                )
-                animeDetails.genre?.take(3)?.forEach { genre ->
-                    Text(
-                        text = genre,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.padding(end = 8.dp)
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
             Text(
-                text = "English name - ${animeDetails.englishTitle}",
+                text = if (animeDetails.englishTitle.isEmpty()) "English name - There is no english name on this anime" else "English name - ${animeDetails.englishTitle}",
                 style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(
@@ -181,6 +186,7 @@ fun DetailScreenContent(
             Text(
                 text = "Native name - ${animeDetails.nativeTitle}",
                 style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
@@ -191,17 +197,5 @@ fun DetailScreenContent(
         )
 
         Spacer(modifier = Modifier.height(100.dp))
-    }
-}
-
-@Composable
-fun ShowDescriptionFormat(description: String?) {
-    description?.let {
-        val cleanDescription = Jsoup.parse(description).text()
-        Text(
-            text = cleanDescription,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface
-        )
     }
 }

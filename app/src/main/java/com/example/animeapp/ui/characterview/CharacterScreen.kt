@@ -31,7 +31,7 @@ import com.example.animeapp.R
 import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.ui.characterview.viewmodel.CharacterViewModel
-import com.example.animeapp.ui.detailview.ShowDescriptionFormat
+import com.example.animeapp.ui.detailview.utils.ChangeDescriptionFormat
 import com.example.domain.details.model.Character
 
 @Composable
@@ -104,7 +104,7 @@ private fun CharacterScreenContent(characterDetails: Character) {
             }
         }
         item {
-            ShowDescriptionFormat(description = characterDetails.description)
+            ChangeDescriptionFormat(description = if(characterDetails.description?.isNotEmpty() == true) characterDetails.description else "There is no description for this character")
         }
     }
 }

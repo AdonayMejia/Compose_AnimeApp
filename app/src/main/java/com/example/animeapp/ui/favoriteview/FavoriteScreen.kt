@@ -58,6 +58,7 @@ private fun FavoriteScreenContent (
         state = pagerState,
         pagerSnapDistance = PagerSnapDistance.atMost(4)
     )
+    /* Values to adapt Horizontal pager size to the screen when is Landscape */
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val isLandscape = isLandscape()

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -42,8 +43,7 @@ fun FavoriteAnimeItem(
 ) {
 
     val pageOffset = (
-            (pagerState.currentPage - currentPage) + pagerState.currentPageOffsetFraction
-            ).absoluteValue
+            (pagerState.currentPage - currentPage) + pagerState.currentPageOffsetFraction).absoluteValue
 
     val scale = lerp(
         start = 0.8f,
@@ -65,32 +65,22 @@ fun FavoriteAnimeItem(
             if (LocalInspectionMode.current) {
                 Image(
                     painter = painterResource(R.drawable.naruto),
-                    contentDescription = "",
+                    contentDescription = "Pager Image",
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.FillBounds
                 )
             } else {
                 Image(
                     painter = rememberAsyncImagePainter(model = favoriteArticle.animeBanner),
-                    contentDescription = "",
+                    contentDescription = "Pager Image",
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.FillBounds
                 )
             }
 
             IconButton(
                 onClick = { removeFromFavorites(favoriteArticle) },
                 modifier = Modifier
-                    .layout { measurable, constraints ->
-                        val placeable = measurable.measure(constraints)
-                        layout(placeable.width, placeable.height) {
-                            placeable.place(
-
-                                x = constraints.maxWidth - placeable.width - 8.dp.roundToPx(),
-                                y = 8.dp.roundToPx()
-                            )
-                        }
-                    }
                     .padding(8.dp)
                     .background(
                         color = Color.Black.copy(alpha = 0.5f),
@@ -98,15 +88,11 @@ fun FavoriteAnimeItem(
                     )
             ) {
                 Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "",
+                    imageVector = Icons.Default.CloudOff,
+                    contentDescription = "Delete Anime",
                     tint = Color.White
                 )
             }
         }
     }
-}
-
-fun lerp(start: Float, stop: Float, fraction: Float): Float {
-    return (1 - fraction) * start + fraction * stop
 }
