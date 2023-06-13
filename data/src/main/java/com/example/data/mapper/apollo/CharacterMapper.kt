@@ -3,7 +3,7 @@ package com.example.data.mapper.apollo
 import com.example.data.CharactersQuery
 import com.example.domain.details.model.Character
 
-fun CharactersQuery.Character.toAnimeCharacter():Character{
+fun CharactersQuery.Character.toAnimeCharacter(): Character {
     return Character(
         id = id,
         name = name?.full.orEmpty(),

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class DeleteFavAnimeUseCase @Inject constructor(
     private val animeRoomRepository: AnimeRoomRepository
 ) {
-    suspend operator fun invoke(animeId:Int){
+    suspend operator fun invoke(animeId: Int) {
         animeRoomRepository.deleteFavAnime(animeId)
     }
 }

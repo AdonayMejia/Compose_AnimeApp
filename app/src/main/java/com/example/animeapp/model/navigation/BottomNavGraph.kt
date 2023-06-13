@@ -1,8 +1,6 @@
 package com.example.animeapp.model.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -20,8 +18,6 @@ fun BottomNavGraph(
     navController: NavHostController
 ) {
     val searchViewModel: SearchViewModel = hiltViewModel()
-//    val favoriteViewModel: FavoriteViewModel = getViewModel()
-
     NavHost(
         navController = navController,
         startDestination = BottomBarScreens.SearchScreen.route
@@ -30,7 +26,7 @@ fun BottomNavGraph(
             SearchAnimeScreen(
                 viewModel = searchViewModel,
                 navController = navController,
-                )
+            )
         }
         composable(route = BottomBarScreens.FavoriteScreen.route) {
             FavoriteScreen(

@@ -15,8 +15,8 @@ object SortAnime {
 }
 
 fun synchronizeName(
-    displayName:String,
-    sortDisplayName:Map<AnimeSort, String>
-):AnimeSort? {
-    return sortDisplayName.entries.firstOrNull{ it.value == displayName }?.key
+    displayName: String,
+    sortDisplayName: Map<AnimeSort, String>
+): AnimeSort? {
+    return sortDisplayName.entries.firstOrNull { it.value == displayName }?.key
 }

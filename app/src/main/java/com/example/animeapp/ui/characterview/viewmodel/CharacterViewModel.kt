@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-        private val getCharactersUseCase: GetCharactersUseCase
+    private val getCharactersUseCase: GetCharactersUseCase
 ) : ViewModel() {
 
     private val _characterDetails = MutableStateFlow<Character?>(null)
@@ -25,7 +25,7 @@ class CharacterViewModel @Inject constructor(
                 val details = getCharactersUseCase(id)
                 _characterDetails.value = details
             } catch (e: Exception) {
-                Log.d("Error","${e.message}")
+                Log.d("Error", "${e.message}")
             }
         }
     }

@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface AnimeRoomRepository {
 
     val getAllAnime: Flow<List<FavoriteAnime>>
-    suspend fun addFavoriteAnime(anime:FavoriteAnime)
-    suspend fun deleteFavAnime(id:Int)
+    suspend fun addFavoriteAnime(anime: FavoriteAnime)
+    suspend fun deleteFavAnime(id: Int)
 }

@@ -8,13 +8,14 @@ import com.example.domain.search.model.AnimeType
 
 interface AnimeRepository {
     suspend fun getAnimeList(
-        page:Int,
-        perPage:Int,
-        search:String? = null,
-        sort:List<AnimeSort>,
-        type:AnimeType
-    ):List<AnimeModel>
-    suspend fun getAnimeDetail(id:Int): AnimeDetails
+        page: Int,
+        perPage: Int,
+        search: String? = null,
+        sort: List<AnimeSort>,
+        type: AnimeType
+    ): List<AnimeModel>
+
+    suspend fun getAnimeDetail(id: Int): AnimeDetails
 
     suspend fun getAnimeCharacters(id: Int): Character
 }

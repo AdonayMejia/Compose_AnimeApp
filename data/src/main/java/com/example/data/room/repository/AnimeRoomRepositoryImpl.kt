@@ -12,13 +12,13 @@ import javax.inject.Inject
 
 class AnimeRoomRepositoryImpl @Inject constructor(
     private val animeDao: AnimeDao
-): AnimeRoomRepository {
+) : AnimeRoomRepository {
 
     override val getAllAnime: Flow<List<FavoriteAnime>>
         get() = animeDao.getFavoriteAnime()
             .map {
                 it.map(AnimeEntity::toAnime)
-        }
+            }
 
 
     override suspend fun addFavoriteAnime(anime: FavoriteAnime) {

@@ -10,12 +10,12 @@ class GetAnimeUseCase @Inject constructor(
     private val animeRepository: AnimeRepository
 ) {
     suspend fun getExecute(
-        page:Int,
-        perPage:Int,
-        search:String? = null,
-        sort:List<AnimeSort>,
+        page: Int,
+        perPage: Int,
+        search: String? = null,
+        sort: List<AnimeSort>,
         type: AnimeType
-    ):List<AnimeModel>{
+    ): List<AnimeModel> {
         return animeRepository.getAnimeList(page, perPage, search, sort, type)
     }
 }

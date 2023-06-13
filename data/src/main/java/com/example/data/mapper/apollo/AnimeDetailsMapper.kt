@@ -4,7 +4,7 @@ import com.example.data.GetAnimeDetailsQuery
 import com.example.domain.details.model.AnimeDetails
 import com.example.domain.details.model.Character
 
-fun GetAnimeDetailsQuery.Media.toAnimeDetails(): AnimeDetails{
+fun GetAnimeDetailsQuery.Media.toAnimeDetails(): AnimeDetails {
     return AnimeDetails(
         id = id,
         title = title?.romaji.orEmpty(),

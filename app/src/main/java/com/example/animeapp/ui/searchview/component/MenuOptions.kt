@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.animeapp.R
 import com.example.animeapp.ui.searchview.utils.SortAnime
 import com.example.animeapp.ui.searchview.utils.synchronizeName
 import com.example.domain.search.model.AnimeSort
@@ -45,7 +43,7 @@ fun OptionsMenu(
             onItemSelected = {
                 synchronizeName(
                     it, SortAnime.sortDisplayName
-                )?.let{
+                )?.let {
                     animeSortSelected(it)
                 }
             }
@@ -60,10 +58,10 @@ fun FilterPReview() {
     val selectedType = AnimeType.ANIME
     val selectedSort = AnimeSort.SCORE
 
-        OptionsMenu(
-            animeType = selectedType,
-            animeSort = selectedSort,
-            animeTypeSelected = {/*Handle type selection*/ },
-            animeSortSelected = { /* Handle sort*/ }
-        )
+    OptionsMenu(
+        animeType = selectedType,
+        animeSort = selectedSort,
+        animeTypeSelected = {/*Handle type selection*/ },
+        animeSortSelected = { /* Handle sort*/ }
+    )
 }

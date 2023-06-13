@@ -8,7 +8,7 @@ import javax.inject.Inject
 class AddFavoriteAnimeUseCase @Inject constructor(
     private val animeRoomRepository: AnimeRoomRepository
 ) {
-    suspend operator fun invoke(animeModel: AnimeModel){
+    suspend operator fun invoke(animeModel: AnimeModel) {
         val favoriteAnime = FavoriteAnime(
             id = animeModel.id,
             animeTitle = animeModel.name,

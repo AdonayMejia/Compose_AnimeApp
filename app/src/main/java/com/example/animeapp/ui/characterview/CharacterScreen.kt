@@ -1,7 +1,6 @@
 package com.example.animeapp.ui.characterview
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,11 +16,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -84,7 +80,7 @@ private fun CharacterScreenContent(characterDetails: Character) {
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                if (LocalInspectionMode.current){
+                if (LocalInspectionMode.current) {
                     Image(
                         painter = painterResource(R.drawable.naruto),
                         contentDescription = "Image",
@@ -94,7 +90,7 @@ private fun CharacterScreenContent(characterDetails: Character) {
                         contentScale = ContentScale.Fit
                     )
 
-                }else{
+                } else {
                     Image(
                         painter = rememberAsyncImagePainter(model = characterDetails.image),
                         contentDescription = "Image",
@@ -108,7 +104,7 @@ private fun CharacterScreenContent(characterDetails: Character) {
             }
         }
         item {
-            ChangeDescriptionFormat(description = if(characterDetails.description?.isNotEmpty() == true) characterDetails.description else "There is no description for this character")
+            ChangeDescriptionFormat(description = if (characterDetails.description?.isNotEmpty() == true) characterDetails.description else "There is no description for this character")
         }
     }
 }

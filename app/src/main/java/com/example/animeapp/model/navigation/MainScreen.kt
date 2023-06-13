@@ -5,7 +5,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.model.navigation.components.BottomBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

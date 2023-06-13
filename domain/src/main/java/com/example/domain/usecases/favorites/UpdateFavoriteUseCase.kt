@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class UpdateFavoriteUseCase @Inject constructor(
     private val animeRoomRepository: AnimeRoomRepository
-){
-    operator fun  invoke(): Flow<Set<Int>>{
-        return animeRoomRepository.getAllAnime.map {animeList ->
+) {
+    operator fun invoke(): Flow<Set<Int>> {
+        return animeRoomRepository.getAllAnime.map { animeList ->
             animeList.map { it.id }.toSet()
         }
     }

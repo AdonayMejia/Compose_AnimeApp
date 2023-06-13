@@ -1,6 +1,5 @@
 package com.example.animeapp.model.navigation.components
 
-import android.content.ClipData
 import androidx.compose.material3.NavigationBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

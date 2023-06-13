@@ -86,7 +86,7 @@ fun DetailScreen(
 
 @Composable
 fun DetailScreenContent(
-    animeDetails:AnimeDetails,
+    animeDetails: AnimeDetails,
     onCharacterClick: (Int) -> Unit
 
 ) {
@@ -163,7 +163,7 @@ fun DetailScreenContent(
 
             ) {
                 Text(
-                    text ="Episodes - ${animeDetails.episodes ?: 1}",
+                    text = "Episodes - ${animeDetails.episodes ?: 1}",
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(end = 8.dp)
@@ -219,9 +219,24 @@ private fun PreviewDetailScreen() {
         score = 8,
         genre = listOf("Action", "Adventure", "Fantasy"),
         character = listOf(
-            Character(id = 1, name = "Rengoku", image = "https://www.geekmi.news/__export/1641913206480/sites/debate/img/2022/01/11/rengoku_x2x.jpg_554688468.jpg", description = null),
-            Character(id = 2, name = "Tanjiro", image = "https://wave.fr/images/1916/05/demon-slayer-nouveau-manga-phenomene-1.jpg", description = null),
-            Character(id = 3, name = "Kanroji", image = "https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2023/04/kimetsu-no-yaiba-husbando-mitsuri-fanart.jpg", description = null)
+            Character(
+                id = 1,
+                name = "Rengoku",
+                image = "https://www.geekmi.news/__export/1641913206480/sites/debate/img/2022/01/11/rengoku_x2x.jpg_554688468.jpg",
+                description = null
+            ),
+            Character(
+                id = 2,
+                name = "Tanjiro",
+                image = "https://wave.fr/images/1916/05/demon-slayer-nouveau-manga-phenomene-1.jpg",
+                description = null
+            ),
+            Character(
+                id = 3,
+                name = "Kanroji",
+                image = "https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2023/04/kimetsu-no-yaiba-husbando-mitsuri-fanart.jpg",
+                description = null
+            )
 
         )
     )

@@ -47,7 +47,6 @@ class SearchViewModel @Inject constructor(
 
 private val _searchUiState = MutableStateFlow(
     SearchUiState(
-        isLoading = false,
         addToFavorites = this::addAnimeToFavorite,
         favoriteAnime = emptySet(),
         onTypeChanged = this::onTypeChanged,

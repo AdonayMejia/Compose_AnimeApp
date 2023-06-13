@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "FavoriteAnime")
-class AnimeEntity (
+class AnimeEntity(
     @PrimaryKey
     val animeId: Int,
 
     @ColumnInfo("animeTitle")
-    val animeTitle:String,
+    val animeTitle: String,
 
     @ColumnInfo("Banner")
-    val animeBanner:String,
-    )
+    val animeBanner: String,
+)

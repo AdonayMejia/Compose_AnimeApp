@@ -3,17 +3,12 @@ package com.example.animeapp.ui.searchview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -26,21 +21,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.animeapp.R
 import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.ui.searchview.component.AnimeItem
-import com.example.animeapp.ui.searchview.component.FilterDropDown
 import com.example.animeapp.ui.searchview.component.OptionsMenu
 import com.example.animeapp.ui.searchview.component.SearchBar
 import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
@@ -54,7 +44,7 @@ import kotlinx.coroutines.flow.flowOf
 fun SearchAnimeScreen(
     viewModel: SearchViewModel,
     navController: NavHostController,
-    ) {
+) {
     val searchUiState by viewModel.uiState.collectAsState()
     val uiSTate by viewModel.favUiState.collectAsState()
     val anime = viewModel.animeFlow.collectAsLazyPagingItems()
@@ -74,9 +64,8 @@ fun SearchAnimeScreen(
         ) {
 
             SearchScreenContent(
-                isLoading = searchUiState.isLoading,
                 animeList = anime,
-                onFavoriteSelected = { anime -> searchUiState.addToFavorites(anime)},
+                onFavoriteSelected = { anime -> searchUiState.addToFavorites(anime) },
                 animeFav = uiSTate.favAnime,
                 onTypeChanged = searchUiState.onTypeChanged,
                 onSortChanged = searchUiState.onSortChanged,
@@ -87,15 +76,11 @@ fun SearchAnimeScreen(
     }
 }
 
-
-
-
 @Composable
 fun SearchScreenContent(
-    isLoading:Boolean,
-    animeList:LazyPagingItems<AnimeModel>,
-    onFavoriteSelected:(AnimeModel) -> Unit,
-    animeFav:Set<Int>,
+    animeList: LazyPagingItems<AnimeModel>,
+    onFavoriteSelected: (AnimeModel) -> Unit,
+    animeFav: Set<Int>,
     onTypeChanged: (AnimeType) -> Unit,
     onSortChanged: (AnimeSort) -> Unit,
     onSearchChanged: (String) -> Unit,
@@ -134,7 +119,7 @@ fun SearchScreenContent(
             }
         )
         Spacer(modifier = Modifier.height(8.dp))
-        if (animeList.itemCount == 0){
+        if (animeList.itemCount == 0) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -144,15 +129,15 @@ fun SearchScreenContent(
                     style = MaterialTheme.typography.titleLarge
                 )
             }
-        }else{
+        } else {
             LazyVerticalGrid(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 columns = GridCells.Fixed(3),
                 modifier = Modifier
                     .fillMaxSize(),
-            ){
-                items(animeList.itemCount){anime ->
+            ) {
+                items(animeList.itemCount) { anime ->
                     val animes = animeList[anime] ?: return@items
                     AnimeItem(
                         anime = animes,
@@ -170,23 +155,27 @@ fun SearchScreenContent(
 @Composable
 fun SearchScreenPrev() {
     val animes = flowOf(
-        PagingData.from(listOf(AnimeModel(
-        id = 1,
-        name = "Naruto",
-        image = "https://m.media-amazon.com/images/M/MV5BODI2NjdlYWItMTE1ZC00YzI2LTlhZGQtNzE3NzA4MWM0ODYzXkEyXkFqcGdeQXVyNjU1OTg4OTM@._V1_.jpg",
-    )))) .collectAsLazyPagingItems()
+        PagingData.from(
+            listOf(
+                AnimeModel(
+                    id = 1,
+                    name = "Naruto",
+                    image = "https://m.media-amazon.com/images/M/MV5BODI2NjdlYWItMTE1ZC00YzI2LTlhZGQtNzE3NzA4MWM0ODYzXkEyXkFqcGdeQXVyNjU1OTg4OTM@._V1_.jpg",
+                )
+            )
+        )
+    ).collectAsLazyPagingItems()
 
     val navController = rememberNavController()
-    AnimeAppTheme{
-       SearchScreenContent(
-           isLoading = false,
-           animeList = animes,
-           onFavoriteSelected = {},
-           animeFav = setOf(1),
-           onTypeChanged = {},
-           onSortChanged = {},
-           onSearchChanged = {},
-           navController = navController
-       )
+    AnimeAppTheme {
+        SearchScreenContent(
+            animeList = animes,
+            onFavoriteSelected = {},
+            animeFav = setOf(1),
+            onTypeChanged = {},
+            onSortChanged = {},
+            onSearchChanged = {},
+            navController = navController
+        )
     }
 }

@@ -8,7 +8,7 @@ class GetDetailsUseCase @Inject constructor(
     private val animeRepository: AnimeRepository
 
 ) {
-    suspend operator fun invoke(id:Int): AnimeDetails {
+    suspend operator fun invoke(id: Int): AnimeDetails {
         return animeRepository.getAnimeDetail(id)
     }
 }

@@ -25,13 +25,13 @@ class AnimeRepositoryImpl @Inject constructor(
 ) : AnimeRepository {
 
     override suspend fun getAnimeList(
-        page:Int,
-        perPage:Int,
-        search:String?,
-        sort:List<AnimeSort>,
+        page: Int,
+        perPage: Int,
+        search: String?,
+        sort: List<AnimeSort>,
         type: AnimeType
     ): List<AnimeModel> {
-        if (search.isNullOrEmpty()){
+        if (search.isNullOrEmpty()) {
             return emptyList()
         }
         val query = ListAnimeQuery(
@@ -41,19 +41,19 @@ class AnimeRepositoryImpl @Inject constructor(
             search = search.toOptional(),
             sort = sort.map { it.toMediaSort() }.toOptional()
         )
-        return apolloClient.executeQuery(query){ data ->
+        return apolloClient.executeQuery(query) { data ->
             data.Page?.media?.mapNotNull { it?.toAnimeModel() } ?: emptyList()
         }
     }
 
     override suspend fun getAnimeDetail(id: Int): AnimeDetails {
-       val query = GetAnimeDetailsQuery(id.toOptional())
-        return apolloClient.executeQuery(query){it.Media?.toAnimeDetails()}
+        val query = GetAnimeDetailsQuery(id.toOptional())
+        return apolloClient.executeQuery(query) { it.Media?.toAnimeDetails() }
     }
 
     override suspend fun getAnimeCharacters(id: Int): Character {
         val query = CharactersQuery(id.toOptional())
-        return apolloClient.executeQuery(query){it.Character?.toAnimeCharacter()}
+        return apolloClient.executeQuery(query) { it.Character?.toAnimeCharacter() }
     }
 
 }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetAnimesFavUseCase @Inject constructor(
     private val animeRoomRepository: AnimeRoomRepository
 ) {
-    operator fun invoke(): Flow<List<FavoriteAnime>>{
+    operator fun invoke(): Flow<List<FavoriteAnime>> {
         return animeRoomRepository.getAllAnime
     }
 }

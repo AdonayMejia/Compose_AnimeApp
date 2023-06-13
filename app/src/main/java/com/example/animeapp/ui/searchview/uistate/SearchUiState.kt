@@ -1,12 +1,10 @@
 package com.example.animeapp.ui.searchview.uistate
 
-import com.example.domain.details.model.AnimeDetails
 import com.example.domain.search.model.AnimeModel
 import com.example.domain.search.model.AnimeSort
 import com.example.domain.search.model.AnimeType
 
 data class SearchUiState(
-    val isLoading:Boolean,
     val addToFavorites: (AnimeModel) -> Unit = {},
     val favoriteAnime: Set<Int> = emptySet(),
     val onTypeChanged: (AnimeType) -> Unit = {},

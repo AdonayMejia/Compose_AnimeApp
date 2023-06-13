@@ -2,17 +2,14 @@ package com.example.animeapp.ui.favoriteview
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,16 +17,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.animeapp.R
-import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.ui.favoriteview.component.FavoriteAnimeItem
 import com.example.animeapp.ui.favoriteview.component.isLandscape
 import com.example.animeapp.ui.favoriteview.viewmodel.FavoriteViewModel
-import com.example.animeapp.ui.searchview.SearchScreenContent
 import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.room.model.FavoriteAnime
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,7 +43,7 @@ fun FavoriteScreen(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun FavoriteScreenContent (
+private fun FavoriteScreenContent(
     favoriteAnimeFlow: StateFlow<List<FavoriteAnime>>,
     removeFromFavorites: (Int) -> Unit,
 ) {

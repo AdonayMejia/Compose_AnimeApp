@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
-    favoriteIconCLick:() -> Unit
+    favoriteIconCLick: () -> Unit
 ) {
     TopAppBar(
         title = {
