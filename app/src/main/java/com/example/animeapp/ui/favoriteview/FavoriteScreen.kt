@@ -77,7 +77,7 @@ private fun FavoriteScreenContent(
         ) { page ->
             if (favoriteArticles.isEmpty()) {
                 Text(
-                    text = "",
+                    text = "There are not animes added to favorites",
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface
                 )

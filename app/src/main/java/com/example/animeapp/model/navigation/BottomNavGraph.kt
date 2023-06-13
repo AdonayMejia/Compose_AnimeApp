@@ -1,7 +1,6 @@
 package com.example.animeapp.model.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -11,7 +10,6 @@ import com.example.animeapp.ui.characterview.CharacterScreen
 import com.example.animeapp.ui.detailview.DetailScreen
 import com.example.animeapp.ui.favoriteview.FavoriteScreen
 import com.example.animeapp.ui.searchview.SearchAnimeScreen
-import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
 
 @Composable
 fun BottomNavGraph(
