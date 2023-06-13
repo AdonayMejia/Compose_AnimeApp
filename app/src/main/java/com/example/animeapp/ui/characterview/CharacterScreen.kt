@@ -1,6 +1,7 @@
 package com.example.animeapp.ui.characterview
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,12 +18,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -32,6 +35,7 @@ import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
 import com.example.animeapp.ui.characterview.viewmodel.CharacterViewModel
 import com.example.animeapp.ui.detailview.utils.ChangeDescriptionFormat
+import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.details.model.Character
 
 @Composable
@@ -105,6 +109,23 @@ private fun CharacterScreenContent(characterDetails: Character) {
         }
         item {
             ChangeDescriptionFormat(description = if(characterDetails.description?.isNotEmpty() == true) characterDetails.description else "There is no description for this character")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewCharacterScreen() {
+    val character = Character(
+        id = 1,
+        image = "https://i.blogs.es/bc1dd2/naruto/840_560.png",
+        name = "Naruto",
+        description = stringResource(R.string.demon_slayer_description)
+    )
+    AnimeAppTheme {
+        Box {
+
+            CharacterScreenContent(characterDetails = character)
         }
     }
 }

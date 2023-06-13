@@ -9,6 +9,7 @@ import com.example.domain.search.model.AnimeType
 interface AnimeRepository {
     suspend fun getAnimeList(
         page:Int,
+        perPage:Int,
         search:String? = null,
         sort:List<AnimeSort>,
         type:AnimeType

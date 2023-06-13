@@ -46,7 +46,6 @@ import com.example.domain.search.model.AnimeModel
 @Composable
 fun AnimeItem(
     anime: AnimeModel,
-    modifier: Modifier,
     onFavoriteSelected:(AnimeModel) -> Unit,
     animeFav:Set<Int>,
     navController: NavHostController,
@@ -54,7 +53,7 @@ fun AnimeItem(
     val painter = rememberAsyncImagePainter(model = anime.image)
     val isFavorite = animeFav.contains(anime.id)
     Card (
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(5.dp)
             .clickable {
@@ -64,18 +63,18 @@ fun AnimeItem(
         colors = CardDefaults.cardColors(containerColor = Color.LightGray)
     ){
         Column(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             if(LocalInspectionMode.current){
                 Image(
-                    modifier = modifier.aspectRatio(3/4f),
+                    modifier = Modifier.aspectRatio(3/4f),
                     painter = painterResource(id = R.drawable.naruto),
                     contentDescription = "Image",
                     alignment = Alignment.Center
                 )
             }else{
                 Image(
-                    modifier = modifier.aspectRatio(3/4f),
+                    modifier = Modifier.aspectRatio(3/4f),
                     painter = painter,
                     contentDescription = "Image",
                     alignment = Alignment.Center
@@ -111,7 +110,6 @@ fun ItemPreview() {
     )
     AnimeItem(
         anime = anime,
-        modifier = Modifier,
         onFavoriteSelected = { /* Handle Event */ },
         animeFav = setOf(1),
         navController = navController

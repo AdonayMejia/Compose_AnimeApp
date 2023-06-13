@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudOff
@@ -25,9 +26,11 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.animeapp.R
+import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.room.model.FavoriteAnime
 import kotlin.math.absoluteValue
 
@@ -95,4 +98,26 @@ fun FavoriteAnimeItem(
             }
         }
     }
+}
+
+@Preview
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun PreviewFavoriteAnimeItem() {
+    val favoriteAnime = FavoriteAnime(
+        id = 1,
+        animeTitle = "Anime Title",
+        animeBanner = "https://i.blogs.es/bc1dd2/naruto/840_560.png"
+    )
+
+    val pagerState = rememberPagerState()
+    AnimeAppTheme {
+        FavoriteAnimeItem(
+            favoriteArticle = favoriteAnime,
+            pagerState = pagerState,
+            currentPage = 1,
+            removeFromFavorites = { /* Do something here */ }
+        )
+    }
+
 }

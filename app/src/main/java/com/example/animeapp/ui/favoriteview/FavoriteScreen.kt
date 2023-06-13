@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.animeapp.R
@@ -29,7 +30,9 @@ import com.example.animeapp.ui.favoriteview.component.FavoriteAnimeItem
 import com.example.animeapp.ui.favoriteview.component.isLandscape
 import com.example.animeapp.ui.favoriteview.viewmodel.FavoriteViewModel
 import com.example.animeapp.ui.searchview.SearchScreenContent
+import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.room.model.FavoriteAnime
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -96,5 +99,35 @@ private fun FavoriteScreenContent (
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewFavoriteScreen() {
+    val favoriteAnimeList = MutableStateFlow(
+        listOf(
+            FavoriteAnime(
+                id = 1,
+                animeTitle = "Anime 1",
+                animeBanner = "https://www.geekmi.news/__export/1641913206480/sites/debate/img/2022/01/11/rengoku_x2x.jpg_554688468.jpg"
+            ),
+            FavoriteAnime(
+                id = 2,
+                animeTitle = "Anime 2",
+                animeBanner = "https://wave.fr/images/1916/05/demon-slayer-nouveau-manga-phenomene-1.jpg"
+            ),
+            FavoriteAnime(
+                id = 3,
+                animeTitle = "Anime 3",
+                animeBanner = "https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2023/04/kimetsu-no-yaiba-husbando-mitsuri-fanart.jpg"
+            )
+        )
+    )
+    AnimeAppTheme {
+        FavoriteScreenContent(
+            favoriteAnimeFlow = favoriteAnimeList,
+            removeFromFavorites = { /* Do something here */ }
+        )
     }
 }

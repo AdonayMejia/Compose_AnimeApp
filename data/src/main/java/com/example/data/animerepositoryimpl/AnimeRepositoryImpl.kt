@@ -26,6 +26,7 @@ class AnimeRepositoryImpl @Inject constructor(
 
     override suspend fun getAnimeList(
         page:Int,
+        perPage:Int,
         search:String?,
         sort:List<AnimeSort>,
         type: AnimeType
@@ -35,6 +36,7 @@ class AnimeRepositoryImpl @Inject constructor(
         }
         val query = ListAnimeQuery(
             page = page.toOptional(),
+            perPage = perPage.toOptional(),
             type = type.toAnimeMediaType().toOptional(),
             search = search.toOptional(),
             sort = sort.map { it.toMediaSort() }.toOptional()

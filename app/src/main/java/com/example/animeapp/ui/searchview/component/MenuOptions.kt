@@ -1,5 +1,6 @@
 package com.example.animeapp.ui.searchview.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -52,7 +53,8 @@ fun OptionsMenu(
     }
 }
 
-@Preview
+@SuppressLint("SuspiciousIndentation")
+@Preview(showBackground = true)
 @Composable
 fun FilterPReview() {
     val selectedType = AnimeType.ANIME
@@ -61,11 +63,7 @@ fun FilterPReview() {
         OptionsMenu(
             animeType = selectedType,
             animeSort = selectedSort,
-            animeTypeSelected = {
-                // Handle type selection
-            },
-            animeSortSelected = {
-                // Handle sort selection
-            }
+            animeTypeSelected = {/*Handle type selection*/ },
+            animeSortSelected = { /* Handle sort*/ }
         )
 }

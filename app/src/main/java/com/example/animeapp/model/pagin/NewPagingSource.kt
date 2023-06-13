@@ -27,14 +27,15 @@ class NewPagingSource(
             val page = params.key ?: 1
             val response = getAnimeUseCase.getExecute(
                 page = page,
+                perPage = 10,
                 search = search,
                 sort = sort,
                 type = type
             )
             LoadResult.Page(
                 data = response,
-                prevKey = if (page == 1) null else page.minus(1),
-                nextKey = if (response.isEmpty()) null else page.plus(1)
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (response.isEmpty()) null else page + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

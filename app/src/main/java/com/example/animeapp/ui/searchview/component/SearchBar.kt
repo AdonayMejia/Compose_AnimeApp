@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.animeapp.R
+import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.search.model.AnimeModel
 import kotlinx.coroutines.launch
 
@@ -87,13 +88,15 @@ fun SearchBar(
     )
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SearchBarPreview() {
-        Box(modifier = Modifier.background(Color.Black)) {
+    AnimeAppTheme {
+        Box {
             SearchBar(
                 searchQuery = "Naruto",
                 onSearchChanged = {}
             )
         }
+    }
 }

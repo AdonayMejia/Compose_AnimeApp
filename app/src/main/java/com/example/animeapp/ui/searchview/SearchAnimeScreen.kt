@@ -1,6 +1,7 @@
 package com.example.animeapp.ui.searchview
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,9 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +31,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.animeapp.R
@@ -38,9 +44,11 @@ import com.example.animeapp.ui.searchview.component.FilterDropDown
 import com.example.animeapp.ui.searchview.component.OptionsMenu
 import com.example.animeapp.ui.searchview.component.SearchBar
 import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
+import com.example.animeapp.ui.theme.AnimeAppTheme
 import com.example.domain.search.model.AnimeModel
 import com.example.domain.search.model.AnimeSort
 import com.example.domain.search.model.AnimeType
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun SearchAnimeScreen(
@@ -113,20 +121,6 @@ fun SearchScreenContent(
                 onSearchChanged(it)
             }
         )
-//        Row(
-//            modifier = Modifier.fillMaxWidth(),
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            Text(stringResource(R.string.filters))
-//            Spacer(modifier = Modifier.width(8.dp))
-//
-//            OptionsMenu(
-//                animeType = ,
-//                animeSort = ,
-//                animeTypeSelected = ,
-//                animeSortSelected =
-//            )
-//        }
         OptionsMenu(
             animeType = selectedType,
             animeSort = selectedSort,
@@ -140,10 +134,16 @@ fun SearchScreenContent(
             }
         )
         Spacer(modifier = Modifier.height(8.dp))
-        if (isLoading){
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+        if (animeList.itemCount == 0){
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    "No anime results",
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
         }else{
             LazyVerticalGrid(
                 verticalArrangement = Arrangement.SpaceEvenly,
@@ -156,7 +156,6 @@ fun SearchScreenContent(
                     val animes = animeList[anime] ?: return@items
                     AnimeItem(
                         anime = animes,
-                        modifier = Modifier.fillMaxSize(),
                         onFavoriteSelected = { onFavoriteSelected(animes) },
                         animeFav = animeFav,
                         navController = navController
@@ -167,9 +166,27 @@ fun SearchScreenContent(
     }
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun SearchScreenPrev() {
-//    val viewModel: SearchViewModel = hiltViewModel()
-//    SearchAnimeScreen(viewModel = viewModel)
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun SearchScreenPrev() {
+    val animes = flowOf(
+        PagingData.from(listOf(AnimeModel(
+        id = 1,
+        name = "Naruto",
+        image = "https://m.media-amazon.com/images/M/MV5BODI2NjdlYWItMTE1ZC00YzI2LTlhZGQtNzE3NzA4MWM0ODYzXkEyXkFqcGdeQXVyNjU1OTg4OTM@._V1_.jpg",
+    )))) .collectAsLazyPagingItems()
+
+    val navController = rememberNavController()
+    AnimeAppTheme{
+       SearchScreenContent(
+           isLoading = false,
+           animeList = animes,
+           onFavoriteSelected = {},
+           animeFav = setOf(1),
+           onTypeChanged = {},
+           onSortChanged = {},
+           onSearchChanged = {},
+           navController = navController
+       )
+    }
+}
