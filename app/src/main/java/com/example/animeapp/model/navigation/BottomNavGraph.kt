@@ -17,20 +17,17 @@ import com.example.animeapp.ui.searchview.viewmodel.SearchViewModel
 fun BottomNavGraph(
     navController: NavHostController
 ) {
-    val searchViewModel: SearchViewModel = hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = BottomBarScreens.SearchScreen.route
     ) {
         composable(route = BottomBarScreens.SearchScreen.route) {
             SearchAnimeScreen(
-                viewModel = searchViewModel,
                 navController = navController,
             )
         }
         composable(route = BottomBarScreens.FavoriteScreen.route) {
-            FavoriteScreen(
-            )
+            FavoriteScreen()
         }
         composable(
             route = BottomBarScreens.DetailsScreen.route,
