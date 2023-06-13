@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +32,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.animeapp.model.navigation.BottomBarScreens
 import com.example.animeapp.model.navigation.components.AppBar
+import com.example.animeapp.ui.favoriteview.component.isLandscape
 import com.example.animeapp.ui.searchview.component.AnimeItem
 import com.example.animeapp.ui.searchview.component.OptionsMenu
 import com.example.animeapp.ui.searchview.component.SearchBar
@@ -95,6 +97,7 @@ fun SearchScreenContent(
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(8.dp)
             .fillMaxSize()
@@ -135,8 +138,10 @@ fun SearchScreenContent(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 columns = GridCells.Fixed(3),
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = if (isLandscape()) Modifier.size(
+                    width = 600.dp,
+                    height = 500.dp
+                ) else Modifier.fillMaxSize(),
             ) {
                 items(animeList.itemCount) { anime ->
                     val animes = animeList[anime] ?: return@items

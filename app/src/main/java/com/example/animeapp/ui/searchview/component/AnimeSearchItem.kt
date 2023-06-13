@@ -10,7 +10,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -29,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.animeapp.R
+import com.example.animeapp.ui.favoriteview.component.isLandscape
 import com.example.domain.search.model.AnimeModel
 
 
@@ -43,13 +43,12 @@ fun AnimeItem(
     val isFavorite = animeFav.contains(anime.id)
     Card(
         modifier = Modifier
-            .fillMaxSize()
+            .aspectRatio(if (isLandscape()) 2 / 2f else 3 / 5f)
             .padding(5.dp)
             .clickable {
                 navController.navigate("DetailsScreen/${anime.id}")
             },
         shape = RectangleShape,
-        colors = CardDefaults.cardColors(containerColor = Color.LightGray)
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -63,7 +62,9 @@ fun AnimeItem(
                 )
             } else {
                 Image(
-                    modifier = Modifier.aspectRatio(3 / 4f),
+                    modifier = if (isLandscape()) Modifier.aspectRatio(2 / 1f) else Modifier.aspectRatio(
+                        3 / 4f
+                    ),
                     painter = painter,
                     contentDescription = "Image",
                     alignment = Alignment.Center
