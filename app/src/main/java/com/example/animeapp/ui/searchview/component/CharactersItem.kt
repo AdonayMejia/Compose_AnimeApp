@@ -1,5 +1,6 @@
 package com.example.animeapp.ui.searchview.component
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,7 +43,8 @@ fun CharacterItem(characters: List<Character>, onCharacterClick: (Int) -> Unit) 
                     .padding(8.dp)
                     .width(120.dp)
                     .height(150.dp)
-                    .clickable { onCharacterClick(character.id) },
+                    .clickable { onCharacterClick(character.id)
+                               Log.wtf("Personaje","Id: ${character.id}")},
             ) {
                 Column(
                     modifier = Modifier

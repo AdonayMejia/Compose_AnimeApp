@@ -46,7 +46,8 @@ import kotlinx.coroutines.flow.flowOf
 @Composable
 fun SearchAnimeScreen(
     viewModel: SearchViewModel = hiltViewModel(),
-    navController: NavHostController,
+    onAnimeSelected : (Int) -> Unit,
+    onMoveFavorite: (String) -> Unit
 ) {
     val searchUiState by viewModel.uiState.collectAsState()
     val uiSTate by viewModel.favUiState.collectAsState()
@@ -55,7 +56,7 @@ fun SearchAnimeScreen(
     Scaffold(
         topBar = {
             AppBar {
-                navController.navigate(BottomBarScreens.FavoriteScreen.route)
+                onMoveFavorite(BottomBarScreens.FavoriteScreen.route)
             }
         }
     ) { innerPadding ->
@@ -73,7 +74,7 @@ fun SearchAnimeScreen(
                 onTypeChanged = searchUiState.onTypeChanged,
                 onSortChanged = searchUiState.onSortChanged,
                 onSearchChanged = searchUiState.onSearchChanged,
-                navController = navController
+                onAnimeSelected = onAnimeSelected
             )
         }
     }
@@ -87,7 +88,7 @@ fun SearchScreenContent(
     onTypeChanged: (AnimeType) -> Unit,
     onSortChanged: (AnimeSort) -> Unit,
     onSearchChanged: (String) -> Unit,
-    navController: NavHostController,
+    onAnimeSelected : (Int) -> Unit,
 
     ) {
     var selectedType by rememberSaveable { mutableStateOf(AnimeType.ANIME) }
@@ -149,7 +150,7 @@ fun SearchScreenContent(
                         anime = animes,
                         onFavoriteSelected = { onFavoriteSelected(animes) },
                         animeFav = animeFav,
-                        navController = navController
+                        onAnimeSelected = onAnimeSelected
                     )
                 }
             }
@@ -172,7 +173,6 @@ fun SearchScreenPrev() {
         )
     ).collectAsLazyPagingItems()
 
-    val navController = rememberNavController()
     AnimeAppTheme {
         SearchScreenContent(
             animeList = animes,
@@ -181,7 +181,7 @@ fun SearchScreenPrev() {
             onTypeChanged = {},
             onSortChanged = {},
             onSearchChanged = {},
-            navController = navController
+            onAnimeSelected = {}
         )
     }
 }

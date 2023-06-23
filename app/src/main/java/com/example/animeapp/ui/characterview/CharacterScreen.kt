@@ -1,5 +1,6 @@
 package com.example.animeapp.ui.characterview
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -62,6 +63,7 @@ fun CharacterScreen(
         }
     } ?: run {
         characterViewModel.fetchCharacterDetails(characterId)
+        Log.wtf("Personaje","Id: $characterId")
     }
 }
 

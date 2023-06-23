@@ -21,7 +21,12 @@ fun BottomNavGraph(
     ) {
         composable(route = BottomBarScreens.SearchScreen.route) {
             SearchAnimeScreen(
-                navController = navController,
+                onAnimeSelected = { id ->
+                    navController.navigate("DetailsScreen/$id")
+                },
+                onMoveFavorite = {
+                    navController.navigate(BottomBarScreens.FavoriteScreen.route)
+                }
             )
         }
         composable(route = BottomBarScreens.FavoriteScreen.route) {
@@ -40,7 +45,7 @@ fun BottomNavGraph(
             arguments = listOf(navArgument("characterId") { type = NavType.IntType })
         ) { backStackEntry ->
             backStackEntry.arguments?.getInt("characterId")?.let { id ->
-                CharacterScreen(characterId = id, navController = navController)
+                CharacterScreen( characterId = id, navController = navController)
             }
         }
     }

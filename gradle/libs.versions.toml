@@ -37,6 +37,9 @@ javaxInject = "1"
 pagingCompose = "1.0.0-alpha19"
 pagingRuntime = "3.1.1"
 jsoup = "1.14.3"
+mock_version = "1.13.5"
+core_testing_version = "2.2.0"
+coroutines_test = "1.6.4"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -81,13 +84,15 @@ paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pag
 paging-rxjava2 = { module = "androidx.paging:paging-rxjava2", version.ref = "pagingRuntime" }
 paging-rxjava3 = { module = "androidx.paging:paging-rxjava3", version.ref = "pagingRuntime" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+mock = { module = "io.mockk:mockk", version.ref= "mock_version" }
+core-testing = { module = "androidx.arch.core:core-testing", version.ref = "core_testing_version" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines_test" }
 
 [bundles]
 room = [
     "roomRuntime",
     "roomKtx"
 ]
-
 
 apollo =[
     "apollo-graphql"]

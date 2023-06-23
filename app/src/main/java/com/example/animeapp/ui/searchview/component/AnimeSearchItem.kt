@@ -37,7 +37,7 @@ fun AnimeItem(
     anime: AnimeModel,
     onFavoriteSelected: (AnimeModel) -> Unit,
     animeFav: Set<Int>,
-    navController: NavHostController,
+    onAnimeSelected : (Int) -> Unit
 ) {
     val painter = rememberAsyncImagePainter(model = anime.image)
     val isFavorite = animeFav.contains(anime.id)
@@ -46,7 +46,8 @@ fun AnimeItem(
             .aspectRatio(if (isLandscape()) 2 / 2f else 3 / 5f)
             .padding(5.dp)
             .clickable {
-                navController.navigate("DetailsScreen/${anime.id}")
+                onAnimeSelected(anime.id)
+//                navController.navigate("DetailsScreen/${anime.id}")
             },
         shape = RectangleShape,
     ) {
@@ -91,7 +92,6 @@ fun AnimeItem(
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun ItemPreview() {
-    val navController = rememberNavController()
 
     val anime = AnimeModel(
         id = 1,
@@ -102,6 +102,6 @@ fun ItemPreview() {
         anime = anime,
         onFavoriteSelected = { /* Handle Event */ },
         animeFav = setOf(1),
-        navController = navController
+        onAnimeSelected = {}
     )
 }
